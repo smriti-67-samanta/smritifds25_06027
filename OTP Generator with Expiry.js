@@ -1,14 +1,14 @@
 function createOTP(){
-    let OTP=""
+    let bag=""
     function generateOTP(){
       OTP=Math.floor(Math.random()*900000)+100000
-      console.log(`Your OTP is: ${OTP}`)
+      console.log(`Your OTP is: ${bag}`)
       }
       function getOTP(){
         
         if(OTP){
-          let nOTP=OTP
-          OTP=""
+          let nOTP=bag
+          bag=""
           console.log(nOTP)
         }
         else{
