@@ -7,9 +7,9 @@ function createOTP(){
       function getOTP(){
         
         if(bag){
-          let nOTP=bag
+          let OTP=bag
           bag=""
-          console.log(nOTP)
+          console.log(OTP)
         }
         else{
           console.log("OTP expired")
