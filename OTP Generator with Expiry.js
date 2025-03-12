@@ -6,7 +6,7 @@ function createOTP(){
       }
       function getOTP(){
         
-        if(OTP){
+        if(bag){
           let nOTP=bag
           bag=""
           console.log(nOTP)
