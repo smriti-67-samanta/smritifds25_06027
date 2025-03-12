@@ -1,8 +1,6 @@
-class BankAccount {
-    constructor(initialBalance){
-      this.balance=initialBalance;
-    }
-    deposit(amount){
+function bankAccount(balance) {
+   this.balance=balance;
+   this.deposit=function(amount){
       if(amount<0){
         console.log("deposit a positive amount")
         
@@ -13,7 +11,7 @@ class BankAccount {
       
       }
     }
-    withdraw(amount){
+   this.withdraw=function(amount){
       if(this.balance<amount){
         console.log("Insufficient funds")
         
@@ -25,12 +23,12 @@ class BankAccount {
       }
     }
     
-    getBalance(){
+    this.getBalance=function(){
       console.log(`Balance is:, ${this.balance}`)
       
     }
   }
-  const myAccount = new BankAccount(1000);  
+  const myAccount = new bankAccount(1000);  
   myAccount.deposit(500);   // "Deposited ₹500. New balance: ₹1500"  
   myAccount.withdraw(200);  // "Withdrew ₹200. New balance: ₹1300"  
   myAccount.withdraw(1500); // "Insufficient funds"  
