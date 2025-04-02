@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .c1{
+            background-color: lightblue;
+        }
+         #box {
+            display: flex;
+             gap: 30px;
+         }
+        
+        #box > div {
+            height: 200px;
+            width: 200px;
+            border: 2px solid green;
+            text-align: center;
+        }
+        #box > div:nth-child(1){
+            background-color: beige;
+            padding: 5px;
+            margin: 10px;
+            border: 2px solid red;
+        }
+        #box > div:nth-child(2){
+            background-color: rgb(180, 189, 128);
+            padding: 10px;
+            margin: 20px ;
+            box-sizing: border-box;
+        }
+        #box > div:nth-child(3){
+            background-color: rgb(156, 187, 191);
+            box-sizing: content-box;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="c1">
+        <h1 style="color: blueviolet; text-align: center;height: 75px;" >Box Model</h1>
+    </header>
+    <div id="box">
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae consequatur voluptate officiis aut sit maiores, distinctio quia, velit at esse excepturi quod dignissimos veritatis inventore placeat culpa explicabo ad natus!</div>
+        <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi exercitationem sed ab tenetur expedita quidem! Corporis neque, dolorum quasi tenetur nisi voluptate deserunt rerum, et recusandae nobis a modi quisquam?</div>
+        <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus debitis vero provident sed ab asperiores dignissimos explicabo? Sunt cum sit aperiam corrupti, iste iusto exercitationem quo a culpa accusamus quae.</div>
+        
+
+    </div>
+    <footer class="c1" style="height: 50px;">
+        <p style="color: blueviolet; text-align: center;padding: 10px;">This is the footer</p>
+    </footer>
+</body>
+</html>
