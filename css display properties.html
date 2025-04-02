@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       #block-element {
+      display: block;
+      background-color: #ffdddd;
+      padding: 10px;
+      margin: 10px 0;
+      border: 2px solid #ff6b6b;
+    }
+
+    
+    .inline-element {
+      display: inline;
+      background-color: #ddffdd;
+      padding: 5px;
+      border: 2px solid #4ecdc4;
+    }
+
+   
+    .inline-block-element {
+      display: inline-block;
+      background-color: #ddddff;
+      width: 150px;
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid #6b6bff;
+    }
+
+    
+    .hidden-element {
+      display: none;
+      background-color: #ffffdd;
+      padding: 10px;
+      border: 2px solid #ffcc00;
+    }
+        button {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #6b6bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+  <div id="block-element">This is a block element (div with display: block)</div>
+
+ 
+  <p>This paragraph 2<span class="inline-element">inline element </span> within the text flow.</p>
+
+  
+  <div>
+    This is paragraph 3<span class="inline-block-element">inline-block element</span> that respects width and height.
+  </div>
+
+ 
+  <div class="hidden-element">Hidden element </div>
+
+</body>
+</html>
