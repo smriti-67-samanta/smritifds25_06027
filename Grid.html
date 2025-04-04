@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#box{
+            width: 50%;
+            height: 50vh;
+            background-color: azure;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            margin: auto;
+        }
+        div#box>div{
+            border: 1px solid black;
+        }
+        div#box>div:nth-of-type(1){
+            background-color: aquamarine;
+        }
+        div#box>div:nth-of-type(2){
+            background-color: rgb(165, 93, 113);
+        }
+        div#box>div:nth-of-type(3){
+            background-color: rgb(139, 129, 184);
+        }
+        div#box>div:nth-of-type(4){
+            background-color: rgb(190, 21, 55);
+        }
+        div#box>div:nth-of-type(5){
+            background-color: rgb(122, 114, 123);
+        }
+        div#box>div:nth-of-type(6){
+            background-color: rgb(49, 23, 218);
+        }
+        div#box>div:nth-of-type(7){
+            background-color: rgb(27, 33, 29);
+        }
+        div#box>div:nth-of-type(8){
+            background-color: rgb(94, 81, 60);
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>
