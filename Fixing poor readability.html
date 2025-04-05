@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#box{
+            width: 80%;
+            height: 60vh;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            background-color: bisque;
+            padding: 20px;
+        }
+        div#box>div{
+            border: 2px solid black;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+        }
+        @media (width<=600px) {
+            div#box>div{
+                font-size: 14px;
+                line-height: 1.5px;
+              
+            }
+        }
+        @media (width>600px) {
+            div#box>div{
+               font-size: 16px;
+
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa quos deserunt tenetur maxime? Aspernatur sunt laborum doloribus, odit adipisci voluptatibus illo labore dignissimos laudantium nemo fugiat! Officiis hic sed aperiam!</p></div>
+        <div><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima et deserunt possimus consequuntur saepe dolor quis accusamus. Maiores dolores quibusdam sit unde, odio enim magnam repellat quas voluptas possimus et!</p></div>
+        <div><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. A aliquid rem ducimus alias minus? Fugiat sint fuga amet. Voluptas nam a sequi magnam, iste quae ea ex esse ratione blanditiis.</p></div>
+        <div><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deleniti sint consequuntur corrupti recusandae et id odio perferendis praesentium quo asperiores, illo, tenetur quis repellendus. Porro quaerat itaque deleniti. Dolores.</p></div>
+        <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, optio! Impedit quod fugiat quis quos laborum ratione incidunt vitae facere at saepe accusamus aperiam, officiis voluptatibus! Ratione hic voluptatum labore?</p></div>
+        <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, placeat! Dolores, architecto doloribus. Sed, iusto explicabo quam, voluptatibus et ipsum vel porro, perferendis optio eos accusantium consequatur distinctio ducimus ea?</p></div>
+    </div>
+</body>
+</html>
