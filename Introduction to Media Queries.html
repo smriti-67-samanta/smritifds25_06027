@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#box{
+            width: 80%;
+            height: 50vh;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            background-color: bisque;
+            padding: 20px;
+        }
+        div#box>div{
+            border: 2px solid black;
+        }
+        @media (width>1024px) {
+            div#box{
+                grid-template-columns: repeat(3,1fr);
+
+            }
+        }
+        @media (width>768px) {
+            div#box{
+                grid-template-columns: repeat(2,1fr);
+
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>
