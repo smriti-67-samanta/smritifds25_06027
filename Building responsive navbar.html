@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+}
+
+.hamburger {
+  display: block;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.navbar-items {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-items.active {
+  display: flex;
+}
+
+.navbar-items li {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.navbar-items a {
+  color: white;
+  text-decoration: none;
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hamburger {
+    display: none;
+  }
+  
+  .navbar-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .hamburger {
+    display: none;
+  }
+  
+  .navbar-items {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    gap: 1rem;
+  }
+  
+  .navbar {
+    flex-wrap: nowrap;
+  }
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">Logo</div>
+        <div class="hamburger">☰</div>
+        <ul class="navbar-items">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+</body>
+</html>
