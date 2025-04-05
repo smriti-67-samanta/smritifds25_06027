@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#box{
+            width: 60%;
+            height: auto;
+            margin: auto;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            background-color: azure;
+            gap: 10px;
+           
+        }
+        div#box>div{
+            border: 1px solid black;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 5px;
+            margin: auto;
+        }
+        #box > div img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        p{
+            color: blue;
+        }
+        h2{
+            color: navy;
+        }
+        @media (width > 1024px) {
+            div#box{
+                grid-template-columns: repeat(3,1fr);
+            }
+            
+        }
+        @media (min-width: 600px) and (max-width: 1024px){
+            div#box{
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+        @media (width < 600px) {
+            div#box{
+                grid-template-columns: repeat(1,1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div><img src="IMG_20171124_105838765.jpg"/>
+        <h2>title</h2>
+        <p>description</p>
+        <button>log in</button>
+    </div>
+        <div>
+            <img src="IMG_20171124_105838765.jpg"/>
+        <h2>title</h2>
+        <p>description</p>
+        <button>log in</button>
+    </div>
+        <div>
+            <img src="IMG_20171124_105838765.jpg"/>
+        <h2>title</h2>
+        <p>description</p>
+        <button>log in</button>
+    </div>
+        <div>
+            <img src="IMG_20171124_105838765.jpg"/>
+            <h2>title</h2>
+            <p>description</p>
+            <button>log in</button>
+     </div>
+        <div>
+            <img src="IMG_20171124_105838765.jpg"/>
+        <h2>title</h2>
+        <p>description</p>
+        <button>log in</button>
+    </div>
+        <div>
+            <img src="IMG_20171124_105838765.jpg"/>
+        <h2>title</h2>
+        <p>description</p>
+        <button>log in</button>
+    </div>
+    </div>
+</body>
+</html>
