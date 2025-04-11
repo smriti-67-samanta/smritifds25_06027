@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Portal Layout</title>
+    <style>
+      
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+      
+        header {
+            height: 70px;
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+     
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: #34495e;
+            padding: 10px 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 0 20px;
+        }
+        
+       
+        
+       
+        
+        .nav-item {
+            color: white;
+            padding: 8px 15px;
+            margin-right: 10px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        
+        
+        
+       
+        .c1 {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            gap: 20px;
+        }
+        
+        .c2 {
+            flex: 0 0 70%;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .c3{
+            border: none;
+            background-color: azure;
+            border-radius: 10px;
+        }
+        
+        .trending-topics {
+            flex: 0 0 250px;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            position: sticky;
+            align-self: flex-start;
+          
+            max-height: calc(100vh - 90px);
+         
+        }
+        
+        
+        
+       
+        
+        
+        
+        .trending-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #bdc3c7;
+        }
+        
+     
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+       
+        @media (max-width: 768px) {
+            .c1 {
+                flex-direction: column;
+            }
+            
+            .c2 {
+                flex: 1;
+            }
+            
+            .trending-topics {
+                flex: 1;
+                position: static;
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Masai.</div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-item">Home</a>
+            <a href="#" class="nav-item">Course</a>
+            <a href="#" class="nav-item">Success Story</a>
+            <a href="#" class="nav-item">Opportunity</a>
+            <a href="#" class="nav-item">Colaboration</a>
+            <a href="#" class="nav-item">Goal</a>
+            <a href="#" class="nav-item">Placement</a>
+            <a href="#" class="nav-item">Companies</a>
+            
+        </div>
+    </nav>
+    
+    <div class="c1">
+        <div class="c2">
+              <div class="c3">
+                <h3>Breaking News: Major Development in Technology Sector</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>
+            </div>
+              <div class="c3">
+                <h3>Political Leaders Meet for Climate Summit</h3>
+                <p>Vivamus luctus eros aliquet convallis ultricies. Mauris augue massa, ultricies non ligula.</p>
+            </div>
+              <div class="c3">
+                <h3>Stock Markets Reach All-Time High</h3>
+                <p>Suspendisse potenti. Sed sollicitudin eros lorem, eget accumsan risus dictum in.</p>
+            </div>
+              <div class="c3">
+                <h3>New Study Reveals Health Benefits of Mediterranean Diet</h3>
+                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            </div>
+        </div>
+        
+        <div class="trending-topics">
+            <h3>Trending Topics</h3>
+            <div class="trending-item">news </div>
+            <div class="trending-item">news</div>
+            <div class="trending-item">news</div>
+            <div class="trending-item">news</div>
+            <div class="trending-item">news</div>
+            <div class="trending-item">news</div>
+            <div class="trending-item">news</div>
+            <div class="trending-item">news</div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 News Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>
