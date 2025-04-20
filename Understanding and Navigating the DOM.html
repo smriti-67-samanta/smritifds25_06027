@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto eveniet reprehenderit blanditiis mollitia vero nostrum harum, vitae pariatur, numquam dolores temporibus qui nemo ea, laborum quisquam? Nobis asperiores tempore mollitia.</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid aut minima tempora ipsam obcaecati molestias a harum. Et sit numquam voluptatum perferendis id minus facilis incidunt. Debitis aliquam accusantium quo.</p>
+    </div>
+    <h1 id="d1">This is the Heading</h1>
+    <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed nesciunt, commodi reprehenderit ducimus dicta quo consectetur voluptas architecto autem reiciendis accusantium doloribus sunt totam deserunt impedit magni quam laboriosam aliquid!</P>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro, nesciunt ea officiis amet assumenda omnis quo minima nisi non fuga magni hic, voluptatibus facere! Fugiat labore excepturi hic illum voluptatibus.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum totam suscipit inventore debitis, assumenda nostrum amet ex possimus accusamus iste distinctio at recusandae quos voluptatibus delectus doloremque expedita quisquam ut?</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis aut nulla sapiente eum minus iure quibusdam inventore dolor ab quas minima aliquam, totam recusandae ex exercitationem! Dolor aliquam facere corporis!</p>
+
+    <script>
+         let heading = document.getElementById('d1');
+         heading.textContent = "Welcome to the DOM World!";
+
+         let paragraph = document.getElementsByTagName('p');
+          Array.from(paragraph).forEach(P => {
+            P.style.color = 'blue';
+        });
+        let container = document.querySelector('.container');
+        container.style.backgroundColor = 'yellow';
+    </script>
+</body>
+</html>
