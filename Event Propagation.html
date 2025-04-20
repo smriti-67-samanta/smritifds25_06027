@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div  id="div1">
+        DIV 1 
+        <div  id="div2">
+            DIV 2 
+            <div  id="div3">
+                DIV 3 
+                <button id="button1">Button 1</button>
+                <button id="button2">Button 2</button>
+                <button id="button3">Button 3</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const div1 = document.getElementById('div1');
+        const div2 = document.getElementById('div2');
+        const div3 = document.getElementById('div3');
+        const button1 = document.getElementById('button1');
+        const button2 = document.getElementById('button2');
+        const button3 = document.getElementById('button3');
+
+        
+        function showAlert() {
+            alert(`Clicked: ${this.id}`);
+        }
+
+        
+        div1.addEventListener('click', showAlert);
+        div2.addEventListener('click', showAlert);
+        div3.addEventListener('click', showAlert);
+        button1.addEventListener('click', showAlert);
+        button2.addEventListener('click', showAlert);
+        button3.addEventListener('click', showAlert);
+       
+    </script>
+       
+</body>
+</html>
