@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="todoInput" placeholder="Enter your Task">
+    <button onclick="addTodo()">Add Todo</button>
+    <button onclick="clearAll()">Clear Todo's</button>
+    <ul id="todoList"></ul>
+
+    <script>
+
+        
+        if(localStorage.getItem('todos')) {
+            document.getElementById('todoList').innerHTML = localStorage.getItem('todos')
+        }
+        
+        function addTodo(){
+            let todoInput = document.getElementById('todoInput').value
+            let todoList = document.getElementById('todoList')
+            let li = document.createElement('li')
+            li.innerText = todoInput
+            todoList.appendChild(li)
+           
+            localStorage.setItem('todos', todoList.innerHTML)
+            document.getElementById('todoInput').value = ""
+        }
+        
+        function clearAll(){
+            document.getElementById('todoList').innerHTML = ""
+            localStorage.removeItem('todos')
+        }
+        
+        </script>
+</body>
+</html>
