@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Choose a Theme</h2>
+    <select id="theme" onchange="changeTheme()">
+        <option >Light</option>
+        <option >Dark</option>
+        <option >Blue</option>
+    </select>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores, laudantium fugiat? Officia neque mollitia illum exercitationem temporibus obcaecati! Architecto, odit nemo cum natus impedit quae blanditiis et sequi dicta quo.</p>
+
+    <script>
+        const themeSelect = document.getElementById("theme");
+        
+        const savedTheme = sessionStorage.getItem("theme");
+        if (savedTheme) {
+            themeSelect.value = savedTheme;
+            applyTheme(savedTheme);
+        }
+    
+        function changeTheme() {
+            const theme = themeSelect.value;
+            sessionStorage.setItem("theme", theme);
+            applyTheme(theme);
+        }
+    
+        function applyTheme(theme) {
+            const themes = {
+                "Light": { bg: "white", text: "black" },
+                "Dark": { bg: "black", text: "white" },
+                "Blue": { bg: "navy", text: "lightblue" }
+            };
+            
+            document.body.style.backgroundColor = themes[theme].bg;
+            document.body.style.color = themes[theme].text;
+        }
+    </script>
+</body>
+</html>
