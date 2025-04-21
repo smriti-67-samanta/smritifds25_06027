@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <ul id="users"></ul>
+    
+    <script>
+         fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(users => {
+                const list = document.getElementById('users');
+                
+               
+                users.forEach(user => {
+                    const item = document.createElement('li');
+                    item.textContent = user.name;
+                    
+                 
+                    item.onclick = () => alert(user.email);
+                    
+                    list.appendChild(item);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to load users');
+            });
+    </script>
+</body>
+</html>
