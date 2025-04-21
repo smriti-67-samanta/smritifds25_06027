@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         .n1{
+            text-align: center;
+        }
+        #d1{
+            height: 100px;
+            width: auto;
+            background-image: url("https://images.pexels.com/photos/618833/pexels-photo-618833.jpeg?cs=srgb&dl=pexels-sagui-andrea-200115-618833.jpg&fm=jpg");
+            background-size: cover;
+            padding: 30px;
+            margin: auto;
+        }
+        footer{
+            height: 80px;
+            width: auto;
+            background-image: url("https://images.pexels.com/photos/618833/pexels-photo-618833.jpeg?cs=srgb&dl=pexels-sagui-andrea-200115-618833.jpg&fm=jpg");
+            background-size: cover;
+            margin: auto;
+            padding: 50px;
+
+        }
+        main{
+            background-color: azure;
+        }
+        div#box{
+            width: 50%;
+            height: auto;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            margin: auto;
+            padding: 10px;
+           
+
+        }
+        div#box>div{
+            border: none;
+        }
+        @media (width > 1024px) {
+            div#box{
+                grid-template-columns: repeat(3,1fr);
+            }
+            
+        }
+        @media (min-width: 600px) and (max-width: 1024px){
+            div#box{
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+        @media (width < 600px) {
+            div#box{
+                grid-template-columns: repeat(1,1fr);
+            }
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <header><h1 style="color: blue; text-align: center;">My Travel Blog</h1></header>
+        <nav class="n1">
+            <a href="Home.html">Home</a>
+            <a href="Destinations.html">Destinations</a>
+            <a href="Gallery.html">Gallery</a>
+            <a href="ContactUs.html">Contact us</a>
+        </nav>
+        </div>
+        <main>
+            <h2 style="color: rgb(3, 25, 26); text-align: center;">Popular Places</h2>
+            <div id="box">
+               
+                <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-UK7wlA7mXIgDuKWH3lCWOBGU-9U81wN9lG4i5FahgSeD3bRoPAq06Uw&s"/></div>
+                <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ92Y80uKv_zCkvekawrUIyEHFQdfYOxN4TNkEJbPCyKEGyrqSE_0ZyRng&s"/></div>
+                <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-UK7wlA7mXIgDuKWH3lCWOBGU-9U81wN9lG4i5FahgSeD3bRoPAq06Uw&s"/></div>
+                <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ92Y80uKv_zCkvekawrUIyEHFQdfYOxN4TNkEJbPCyKEGyrqSE_0ZyRng&s"/></div>
+                <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-UK7wlA7mXIgDuKWH3lCWOBGU-9U81wN9lG4i5FahgSeD3bRoPAq06Uw&s"/></div>
+                <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ92Y80uKv_zCkvekawrUIyEHFQdfYOxN4TNkEJbPCyKEGyrqSE_0ZyRng&s"/></div>
+                <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-UK7wlA7mXIgDuKWH3lCWOBGU-9U81wN9lG4i5FahgSeD3bRoPAq06Uw&s"/></div>
+                <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ92Y80uKv_zCkvekawrUIyEHFQdfYOxN4TNkEJbPCyKEGyrqSE_0ZyRng&s"/></div>
+                <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-UK7wlA7mXIgDuKWH3lCWOBGU-9U81wN9lG4i5FahgSeD3bRoPAq06Uw&s"/></div>
+            </div>
+
+        </main>
+        <footer style="text-align: center;">
+            <a href="Contact Information">Contact Information</a>
+            <a href="facebook">facebook</a>
+            <a href="Twitter">Twitter</a>
+        </footer>
+    
+</body>
+</html>
