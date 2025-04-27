@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Search</h1>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option value="">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="min-price">Min Price:</label>
+                <input type="number" id="min-price" placeholder="Min price">
+            </div>
+            <div class="filter-group">
+                <label for="max-price">Max Price:</label>
+                <input type="number" id="max-price" placeholder="Max price">
+            </div>
+            
+            <div class="filter-group">
+                <label for="sort">Sort by Price:</label>
+                <select id="sort">
+                    <option value="">None</option>
+                    <option value="asc">Low to High</option>
+                    <option value="desc">High to Low</option>
+                </select>
+            </div>
+            
+            <button id="search-btn">Search Products</button>
+        </div>
+        <div id="loading" class="loading">Loading products...</div>
+        <div id="error" class="error"></div>
+        
+        <div id="products" class="products-grid"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.getElementById('search-btn');
+    const productsContainer = document.getElementById('products');
+    const loadingElement = document.getElementById('loading');
+    const errorElement = document.getElementById('error');
+    
+    searchBtn.addEventListener('click', fetchProducts);
+    
+    async function fetchProducts() {
+       
+        const category = document.getElementById('category').value;
+        const minPrice = document.getElementById('min-price').value;
+        const maxPrice = document.getElementById('max-price').value;
+        const sort = document.getElementById('sort').value;
+        
+       
+        productsContainer.innerHTML = '';
+        errorElement.style.display = 'none';
+        loadingElement.style.display = 'block';
+        
+        
+        const params = new URLSearchParams();
+        if (category) params.append('category', category);
+        if (minPrice) params.append('min_price', minPrice);
+        if (maxPrice) params.append('max_price', maxPrice);
+        if (sort) params.append('sort', sort);
+        
+        try {
+          
+            const response = await fetch(`https://mockapi.io/products?${params.toString()}`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const products = await response.json();
+            
+            
+           
+            
+            
+            displayProducts(products);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+            loadingElement.style.display = 'none';
+            errorElement.textContent = `Error loading products: ${error.message}`;
+            errorElement.style.display = 'block';
+        }
+    }
+    
+    function displayProducts(products) {
+        if (products.length === 0) {
+            productsContainer.innerHTML = '<p class="no-products">No products found matching your criteria.</p>';
+            return;
+        }
+        
+        productsContainer.innerHTML = products.map(product => `
+            <div class="product-card">
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-name">${product.name}</div>
+                <div class="product-price">$${product.price.toFixed(2)}</div>
+            </div>
+        `).join('');
+    }
+});
+    </script>
+</body>
+</html>
