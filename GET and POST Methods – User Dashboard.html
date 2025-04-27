@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Dashboard</h1>
+    
+    <div class="form">
+        <h2>Add User</h2>
+        <form id="userForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <button type="submit">Add User</button>
+        </form>
+        <div id="message"></div>
+    </div>
+    <div class="users">
+        <h2>User List</h2>
+        <button id="refresh">Refresh List</button>
+        <div id="userList"></div>
+    </div>
+    <script>
+       const form = document.getElementById('userForm');
+       const userList = document.getElementById('userList');
+       const refreshBtn = document.getElementById('refresh');
+       loadUsers();
+
+
+form.onsubmit = async (e) => {
+  e.preventDefault();
+  
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  try {
+    await fetch('https://mockapi.io/users', {
+      method: 'POST',
+      //headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email })
+    });
+    loadUsers(); 
+    form.reset(); 
+  } catch {
+    alert('Error adding user');
+  }
+};
+refreshBtn.onclick = loadUsers;
+
+
+async function loadUsers() {
+  try {
+    const response = await fetch('https://mockapi.io/users');
+    const users = await response.json();
+    userList.innerHTML = users.map(user => `
+      <div>
+        <b>${user.name}</b> - ${user.email}
+      </div>
+    `).join('');
+  } catch {
+    userList.innerHTML = 'Error loading users';
+  }
+}
+
+    </script>
+</body>
+</html>
