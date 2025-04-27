@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Registration</h1>
+        
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+                <div class="error-message" id="name-error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required minlength="6">
+                <div class="error-message" id="password-error"></div>
+            </div>
+            
+            <button type="submit" id="register-btn">Register</button>
+        </form>
+        
+        <div id="message" class="message"></div>
+    </div>
+    <script>
+const form = document.getElementById('registration-form');
+const messageDiv = document.getElementById('message');
+const registerBtn = document.getElementById('register-btn');
+
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+  
+    clearMessages();
+    
+   
+    const { name, email, password } = getFormValues();
+    if (!validateForm(name, email, password)) return;
+    
+   
+    registerBtn.disabled = true;
+    registerBtn.textContent = 'Registering...';
+    
+    try {
+       
+        const response = await fetch('https://mockapi.io/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password })
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Registration failed');
+        }
+        showMessage('Registration successful!', 'success');
+        form.reset();
+    } catch (error) {
+        showMessage(error.message, 'error');
+    } finally {
+        registerBtn.disabled = false;
+        registerBtn.textContent = 'Register';
+    }
+});
+function getFormValues() {
+    return {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value.trim()
+    };
+}
+function getFormValues() {
+    return {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value.trim()
+    };
+}
+function showError(elementId, message) {
+    document.getElementById(elementId).textContent = message;
+}
+
+function showMessage(message, type) {
+    messageDiv.textContent = message;
+    messageDiv.className = `message ${type}`;
+}
+function clearMessages() {
+  
+    document.querySelectorAll('.error-message').forEach(el => {
+        el.textContent = '';
+    });
+    
+    messageDiv.textContent = '';
+    messageDiv.className = 'message';
+}
+    </script>
+</body>
+</html>
