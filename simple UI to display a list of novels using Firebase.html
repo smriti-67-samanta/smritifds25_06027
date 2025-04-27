@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel Catalog</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .controls { display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+        .filter-group, .sort-group, .search-group { margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f2f2f2; position: sticky; top: 0; }
+        input, select { padding: 8px; width: 200px; }
+        button { padding: 8px 15px; background-color: #4285f4; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #3367d6; }
+        .price { text-align: right; }
+    </style>
+</head>
+<body>
+    <h1>Novel Catalog</h1>
+    
+    <div class="controls">
+        <div class="search-group">
+            <h3>Search</h3>
+            <input type="text" id="searchInput" placeholder="Search by title or author">
+        </div>
+        <div class="filter-group">
+            <h3>Filter by Year</h3>
+            <select id="yearFilter">
+                <option value="all">All Years</option>
+            </select>
+        </div>
+        <div class="sort-group">
+            <h3>Sort by Price</h3>
+            <select id="priceSort">
+                <option value="default">Default</option>
+                <option value="asc">Price: Low to High</option>
+                <option value="desc">Price: High to Low</option>
+            </select>
+        </div>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th class="price">Price</th>
+                <th>Year</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody id="novels-container"></tbody>
+    </table>
+
+    
+
+    <script>
+        
+        const firebaseConfig = {
+            databaseURL: "https://novelsdatabase-dd233-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+    
+        const novelsContainer = document.getElementById('novels-container');
+        const searchInput = document.getElementById('searchInput');
+        const yearFilter = document.getElementById('yearFilter');
+        const priceSort = document.getElementById('priceSort');
+
+        
+        let allNovels = [];
+
+        
+        function loadNovels() {
+            db.ref('novels').once('value')
+                .then(snapshot => {
+                    const data = snapshot.val();
+                    if (!data) {
+                        console.error("No novels found in database");
+                        novelsContainer.innerHTML = '<tr><td colspan="5">No novels available</td></tr>';
+                        return;
+                    }
+                    allNovels = Object.entries(data).map(([id, novel]) => ({ id, ...novel }));
+
+            
+                    const years = [...new Set(allNovels.map(novel => novel.releaseYear))].sort((a, b) => b - a);
+                    years.forEach(year => {
+                        yearFilter.innerHTML += `<option value="${year}">${year}</option>`;
+                    });
+
+                    applyFilters();
+                })
+                .catch(error => {
+                    console.error("Failed to fetch novels:", error);
+                    novelsContainer.innerHTML = '<tr><td colspan="5">Error loading novels</td></tr>';
+                });
+        }
+
+        
+        function applyFilters() {
+            let results = [...allNovels];
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedYear = yearFilter.value;
+            const sortDirection = priceSort.value;
+
+            
+            if (searchTerm) {
+                results = results.filter(novel => 
+                    novel.title.toLowerCase().includes(searchTerm) || 
+                    novel.author.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            
+            if (selectedYear !== 'all') {
+                results = results.filter(novel => novel.releaseYear == selectedYear);
+            }
+
+            
+            if (sortDirection === 'asc') {
+                results.sort((a, b) => a.price - b.price);
+            } else if (sortDirection === 'desc') {
+                results.sort((a, b) => b.price - a.price);
+            }
+
+            showNovels(results);
+        }
+
+    
+        function showNovels(novels) {
+            novelsContainer.innerHTML = '';
+            if (novels.length === 0) {
+                novelsContainer.innerHTML = '<tr><td colspan="5">No novels found</td></tr>';
+                return;
+            }
+            novels.forEach(novel => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${novel.title}</td>
+                    <td>${novel.author}</td>
+                    <td>$${novel.price.toFixed(2)}</td>
+                    <td>${novel.releaseYear}</td>
+                    <td>${novel.genre}</td>
+                `;
+                novelsContainer.appendChild(row);
+            });
+        }
+
+        
+        searchInput.addEventListener('input', applyFilters);
+        yearFilter.addEventListener('change', applyFilters);
+        priceSort.addEventListener('change', applyFilters);
+
+        
+        loadNovels();
+    </script>
+</body>
+</html>
