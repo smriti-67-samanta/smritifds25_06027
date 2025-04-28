@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+               .n1{
+            text-align: center;
+        }
+        #d1{
+            height: 100px;
+            width: auto;
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsB2SyAkke6qqgFAIkUhnM57XP5yziXBXXwg&s");
+            background-size: cover;
+            padding: 30px;
+            margin: auto;
+        }
+        footer{
+            height: auto;
+            width: 100%;
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsB2SyAkke6qqgFAIkUhnM57XP5yziXBXXwg&s");
+            background-size: cover;
+            margin: auto;
+            padding: 50px;
+
+        }
+        main{
+            background: linear-gradient(rgb(232, 240, 243), #cce1ea);
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <header><h1 style="color: blue; text-align: center;">Study Notes</h1></header>
+        <nav class="n1">
+            <a href="Home1.html">Home</a>
+            <a href="CreateNote.html">Create Notes</a>
+            <a href="ViewNotes.html">View Notes</a>
+            <a href="Settings.html">Settings</a>
+        </nav>
+        </div>
+        <main>
+          
+            <div class="s">
+                <h2>Add/Edit Note</h2>
+                <form id="">
+                 
+                  <div class="f">
+                    <label for="note-title">Title</label>
+                    <input type="text" id="title" required>
+                  </div>
+                  <div class="topic">
+                    <label for="book-author">Topic</label>
+                    <input type="text" id="Topic" required>
+                  </div>
+                  <div>
+                    <textarea name="" id="cont">Content</textarea>
+                </div>
+                  <div class="img">
+                    <label for="img">Image</label>
+                    <input type="image" id="img" required>
+                  </div>
+                 
+                  <button type="submit">Submit</button>
+                  <button type="button" id="cancel-btn">Cancel</button>
+                </form>
+              </div>
+
+        </main>
+
+        <footer style="text-align: center;">
+            <a href="Contact Information">Contact Information</a>
+            <a href="facebook">facebook</a>
+            <a href="Twitter">Twitter</a>
+        </footer>
+        <script>
+               fetch("https://moviedatabase-8a40a-default-rtdb.asia-southeast1.firebasedatabase.app/books.json", {
+    method: 'POST',
+    body: JSON.stringify({
+       title:title,
+       content:Content,
+       topic:Topic,
+       
+
+    })
+})
+.then(response => response.json())
+.then(data => console.log("Your note has been successfully saved!"))
+.catch(error => console.error(error));
+
+document.addEventListner("contentadded",()=>
+        {
+            const form=getElementById("c4")
+            const savedFeedback=[]
+
+          const feedback=jSON.parse(localstorage.getItem("Content"))
+          form.addEventListner("submit", function(e){
+            e.preventDefault()
+            const title=document.getElementById("title")
+            const topic=document.getElementById("topic")
+            const content=document.getElementById("cont")
+            const img=document.getElementById("img")
+           
+
+            if(!title || !topic || !content || !message || !img){
+                alert("Please fill all the fields")
+                return;
+            }
+            
+            savedcontent.push(content)
+            localStorage.setItem("content")
+            JSOn.stringify(savedcontent)
+            displayContent("content")
+
+            function displayContent(data){
+                
+            }
+
+
+       
+            
+          })
+        </script>
+</body>
+</html>
