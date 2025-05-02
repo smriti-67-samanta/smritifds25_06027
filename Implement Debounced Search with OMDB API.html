@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="searchinput" placeholder="Enter Movie Name">
+</body>
+<script>
+    let timer;
+    document.getElementById('searchinput').addEventListener('input',(event)=>{
+    searchMovie(event.target.value)
+    clearTimeout(timer)
+    timer=setTimeout(()=>{
+        console.log("timer ened and API called")
+    },500)
+})
+    function searchMovie(query){
+        console.log("making API request for", query)
+    }
+</script>
+</html>
