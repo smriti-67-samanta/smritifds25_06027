@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js"></script>
+</head>
+<body>
+    <h2>Signup</h2>
+    <form id="signupForm">
+        <input type="email" id="email" placeholder="Enter email" required><br>
+        <input type="password" id="password" placeholder="Enter password" required><br>
+        <button type="submit">Signup</button>
+    </form>
+
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Enter email" required><br>
+        <input type="password" id="loginPassword" placeholder="Enter password" required><br>
+        <button type="submit">Login</button>
+    </form>
+
+    <p id="loginStatus"></p>
+
+    <h2>Welcome to Dashboard</h2>
+    <p id="userInfo"></p>
+    <button onclick="logout()">Logout</button>
+    <script>
+         const firebaseConfig = {
+            apiKey: "AIzaSyC9E7dm9p6el0dreVlmKlf7QHV3GPzFIbk",
+            authDomain: "authentication-453d8.firebaseapp.com",
+            databaseURL: "https://authentication-453d8-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "authentication-453d8",
+            storageBucket: "authentication-453d8.firebasestorage.app",
+            messagingSenderId: "606665206020",
+            appId: "1:606665206020:web:851e6c1671d584ca500851",
+            measurementId: "G-15DCYDMSGH"
+        };
+
+        
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        const firebaseURL = "https://authentication-453d8-default-rtdb.asia-southeast1.firebasedatabase.app//users.json"; // Replace with your actual DB URL
+
+document.getElementById("signupForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const newUser = { email, password };
+
+    try {
+        const response = await fetch(firebaseURL, {
+            method: "POST",
+            body: JSON.stringify(newUser),
+            headers: { "Content-Type": "application/json" }
+        });
+
+        if (response.ok) {
+            alert("Signup successful!");
+            window.location.href = "login.html"; // Redirect to login page
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+});
+
+const firebaseLoginURL = "https://authentication-453d8-default-rtdb.asia-southeast1.firebasedatabase.app//users.json"; 
+
+document.getElementById("loginForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    try {
+        const response = await fetch(firebaseLoginURL);
+        const users = await response.json();
+
+        let isAuthenticated = false;
+
+        for (let key in users) {
+            if (users[key].email === email && users[key].password === password) {
+                isAuthenticated = true;
+                sessionStorage.setItem("user", email); // Store session
+                window.location.href = "dashboard.html"; // Redirect after login
+                break;
+            }
+        }
+
+        if (!isAuthenticated) {
+            document.getElementById("loginStatus").textContent = "Invalid email or password!";
+        }
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+});
+
+window.onload = function () {
+    const user = sessionStorage.getItem("user");
+
+    if (!user) {
+        window.location.href = "login.html"; // Redirect if not logged in
+    } else {
+        document.getElementById("userInfo").textContent = "Logged in as: " + user;
+    }
+};
+
+function logout() {
+    sessionStorage.removeItem("user");
+    window.location.href = "login.html";
+}
+
+
+
+    </script>
+</body>
+</html>
