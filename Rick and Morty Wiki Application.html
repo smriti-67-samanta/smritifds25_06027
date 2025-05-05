@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick and Morty Encyclopedia</title>
+   
+</head>
+<body>
+    <header>
+        <h1>Rick and Morty Character Encyclopedia</h1>
+    </header>
+    
+    <main>
+        <div class="character-grid" id="characterGrid">
+           
+        </div>
+        
+        <div class="pagination">
+            <button id="prevBtn" disabled>Previous</button>
+            <span id="pageInfo">Page 1</span>
+            <button id="nextBtn">Next</button>
+        </div>
+    </main>
+    
+    <footer>
+        <div id="liveClock">00:00:00 Monday January 1, 2024</div>
+    </footer>
+    
+    <script>
+        
+let currentPage = 1;
+let totalPages = 1;
+
+
+const characterGrid = document.getElementById('characterGrid');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const pageInfo = document.getElementById('pageInfo');
+
+
+async function fetchCharacters(page = 1) {
+    try {
+        const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching characters:', error);
+        return null;
+    }
+}
+
+
+function displayCharacters(characters) {
+    characterGrid.innerHTML = '';
+    
+    characters.forEach(character => {
+        const card = document.createElement('div');
+        card.className = 'character-card';
+        card.innerHTML = `
+            <img src="${character.image}" alt="${character.name}">
+            <h3>${character.name}</h3>
+            <p>Species: ${character.species}</p>
+            <p>Status: ${character.status}</p>
+            <a href="character detail.html?id=${character.id}" target="_blank">View Details</a>
+        `;
+        characterGrid.appendChild(card);
+    });
+}
+
+
+function updatePagination(info) {
+    currentPage = info.page;
+    totalPages = info.pages;
+    
+    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+    prevBtn.disabled = currentPage <= 1;
+    nextBtn.disabled = currentPage >= totalPages;
+}
+
+
+async function init() {
+    const data = await fetchCharacters(currentPage);
+    if (data) {
+        displayCharacters(data.results);
+        updatePagination(data.info);
+    }
+    
+    
+    prevBtn.addEventListener('click', async () => {
+        if (currentPage > 1) {
+            currentPage--;
+            const data = await fetchCharacters(currentPage);
+            displayCharacters(data.results);
+            updatePagination(data.info);
+        }
+    });
+    
+    nextBtn.addEventListener('click', async () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            const data = await fetchCharacters(currentPage);
+            displayCharacters(data.results);
+            updatePagination(data.info);
+        }
+    });
+    
+   
+    updateClock();
+    setInterval(updateClock, 1000);
+}
+
+
+function updateClock() {
+    const now = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const timeStr = now.toLocaleTimeString();
+    const dateStr = now.toLocaleDateString(undefined, options);
+    document.getElementById('liveClock').textContent = `${timeStr} ${dateStr}`;
+}
+
+
+document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
